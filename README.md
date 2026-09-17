@@ -25,4 +25,4 @@ sanitario de forma profesional.
 - [ ] Integración con Salesforce Service Cloud
 
 ## Autora
-Sheila Mª Morales Barón — [LinkedIn](https://linkedin.com/in/sheila-mmb)
+Sheila Maria Morales Barón — [LinkedIn](https://linkedin.com/in/sheila-mmb)
