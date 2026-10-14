@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Test_de_Leucemia__c</fullName>
+    <label>Test de leucemia</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sin test</fullName>
+                <default>true</default>
+                <label>Sin test</label>
+            </value>
+            <value>
+                <fullName>Negativo</fullName>
+                <default>false</default>
+                <label>Negativo</label>
+            </value>
+            <value>
+                <fullName>Positivo</fullName>
+                <default>false</default>
+                <label>Positivo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

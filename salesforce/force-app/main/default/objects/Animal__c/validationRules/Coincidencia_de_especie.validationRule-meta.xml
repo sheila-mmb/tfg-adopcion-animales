@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Coincidencia_de_especie</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+				NOT(ISBLANK(Raza__c)), 
+				TEXT(Raza__r.Especie__c) &lt;&gt; RecordType.Name
+)</errorConditionFormula>
+    <errorDisplayField>Raza__c</errorDisplayField>
+    <errorMessage>La raza no corresponde a la especie del animal</errorMessage>
+</ValidationRule>

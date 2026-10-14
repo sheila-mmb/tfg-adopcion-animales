@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tipo_de_especie__c</fullName>
+    <label>Tipo de especie</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ave</fullName>
+                <default>false</default>
+                <label>Ave</label>
+            </value>
+            <value>
+                <fullName>Conejo</fullName>
+                <default>false</default>
+                <label>Conejo</label>
+            </value>
+            <value>
+                <fullName>Reptil</fullName>
+                <default>false</default>
+                <label>Reptil</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

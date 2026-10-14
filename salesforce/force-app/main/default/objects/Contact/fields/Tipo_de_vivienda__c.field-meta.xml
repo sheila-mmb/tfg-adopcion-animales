@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tipo_de_vivienda__c</fullName>
+    <label>Tipo de vivienda</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Piso</fullName>
+                <default>false</default>
+                <label>Piso</label>
+            </value>
+            <value>
+                <fullName>Chalet</fullName>
+                <default>false</default>
+                <label>Chalet</label>
+            </value>
+            <value>
+                <fullName>Chalet con jardín</fullName>
+                <default>false</default>
+                <label>Chalet con jardín</label>
+            </value>
+            <value>
+                <fullName>Parcela</fullName>
+                <default>false</default>
+                <label>Parcela</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
