@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Animales_Huellas_del_Henares</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Animales Huellas del Henares</label>
+        <sharedTo>
+            <role>Huellas_del_Henares</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Centro_clave__c</field>
+            <operation>contains</operation>
+            <value>T4QAM</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

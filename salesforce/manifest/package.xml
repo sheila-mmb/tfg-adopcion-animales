@@ -9,11 +9,19 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>*</members>
+        <members>Account-Mimo Layout</members>
+        <members>Animal__c-Animal - Exótico</members>
+        <members>Animal__c-Animal - Gato</members>
+        <members>Animal__c-Animal - Perro</members>
+        <members>Animal__c-Animal Layout</members>
+        <members>Case-Mimo Layout</members>
+        <members>Contact-Mimo Layout</members>
+        <members>Customer-Mimo Layout</members>
+        <members>Raza__c-Raza Layout</members>
         <name>Layout</name>
     </types>
     <types>
-        <members>*</members>
+        <members>Case_Rellenar_centro_clave</members>
         <name>Flow</name>
     </types>
     <types>
@@ -21,8 +29,23 @@
         <name>Profile</name>
     </types>
     <types>
-        <members>*</members>
+        <members>Empleado_de_centro</members>
+        <members>Gestor_de_centro</members>
+        <members>Integration_Mimo</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Mimo</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Huellas_del_Henares</members>
+        <name>Role</name>
+    </types>
+    <types>
+        <members>Animal__c</members>
+        <members>Case</members>
+        <name>SharingRules</name>
     </types>
     <version>62.0</version>
 </Package>
