@@ -1,58 +1,34 @@
-# Salesforce DX Project
+# Mimo · Configuración de Salesforce
 
-Salesforce DX is a development approach that brings source-driven development, team collaboration, and continuous integration to the Salesforce Platform. Instead of working directly in an org through a web browser, you work with metadata as source files in a local DX project, track changes in version control, and deploy through automated processes.
+Metadatos de la org de Salesforce (Service Cloud, Developer Edition) que usa **Mimo** como *back office* de las protectoras. El personal de cada centro gestiona aquí las solicitudes y los animales. La app y el backend (Spring Boot) nunca hablan con Salesforce directamente desde el cliente: todo pasa por la API REST.
 
-This project template gets you started with the tools and structure you need to build Salesforce applications using source control, scratch orgs, and the Salesforce CLI.
+## Qué contiene
 
-## Prerequisites
+| Elemento | Descripción |
+|---|---|
+| **Objetos** | `Animal__c` (con Record Types por especie: perro, gato, exótico), `Raza__c`, y personalizaciones de `Account` (centro), `Contact` (adoptante/acogedor) y `Case` (solicitud) |
+| **Perfil** | `Personal de centro` (acceso mínimo, los permisos van en permission sets) |
+| **Permission sets** | `Empleado de centro`, `Gestor de centro` e `Integración Mimo` (usuario de integración del backend) |
+| **Roles y sharing rules** | Un rol por centro y reglas de compartición para que cada centro vea solo sus animales y solicitudes |
+| **Flow** | `Case_Rellenar_centro_clave`: rellena el centro de cada solicitud a partir del animal |
+| **App** | Aplicación Lightning `Mimo` |
 
-Before you start, make sure you have:
+## Visibilidad por centro
 
-- **Salesforce CLI** - Download from [developer.salesforce.com/tools/salesforcecli](https://developer.salesforce.com/tools/salesforcecli). See [Install Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) for details.
-- **VS Code with Salesforce Extension Pack** - See [Installation Instructions](https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/install.html) for details. Includes the Agentforce Vibes extension.
-- **A development org** - Sign up for a free Developer Edition org [here](https://developer.salesforce.com/signup).
-- **Dev Hub enabled** (optional, required to create scratch orgs) - You can enable Dev Hub in your development org under Setup > Dev Hub.  See [Provide Developers Access to Salesforce DX Tools](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_setup_dx_tools.htm).
+Los *sharing rules* no permiten usar relaciones (lookups) como criterio, así que `Animal__c` y `Case` tienen un campo de texto auxiliar, `Centro_clave__c`, con el Id del centro. Las reglas comparten los registros con el rol de cada centro según ese campo. El campo solo existe en Salesforce, no en PostgreSQL.
 
-## Project Structure
+## Cómo descargar los cambios de la org
 
-Your DX project follows this structure:
+Requiere [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli) y haber iniciado sesión (`sf org login web --alias mimo`).
 
-- **`force-app/main/default/`** - Your metadata source files live in this default package directory. You can configure additional package directories in the `sfdx-project.json` file.
-- **`config/`** - Scratch org definitions and project settings
-- **`scripts/`** - Automation scripts for common tasks
-- **`sfdx-project.json`** - Project manifest that defines package directories, namespace, API version, and other project-level settings
+```bash
+cd salesforce
+sf project retrieve start --manifest manifest/package.xml --target-org mimo
+```
 
-See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm).
+El archivo `manifest/package.xml` lista de forma explícita qué se descarga. Los roles de un centro nuevo hay que añadirlos a mano. Hay elementos que se dejan fuera a propósito: la *External Client App* (contiene credenciales) y los usuarios.
 
-## Get Started
+## Notas
 
-Ready to start developing? The [Get Started with Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_get_started_dx.htm) guide walks you through your first project, from creating a scratch org to creating a simple Apex class or LWC to deploying your code to a sandbox.
-
-## Common Salesforce CLI Commands
-
-Here are common CLI commands that you'll use the most:
-
-- `sf org login web`: Authorize an org
-- `sf org open`: Open your org in a browser
-- `sf org create scratch`: Create a scratch org
-- `sf project deploy start`: Deploy metadata to your org
-- `sf project retrieve start`: Retrieve metadata from your org
-- `sf template generate <artifact>`: Scaffold new components, such as Apex classes and triggers, LWC components, Lightning apps, and more
-- `sf apex <command>`: Run Apex tests, run anonymous Apex blocks, and view logs
-- `sf data <command>`: Work with test data
-- `sf alias <command>`: Manage org aliases
-- `sf config <command>`: Configure CLI settings
-
-## Use Agentforce Vibes to Build Lightning Apps
-
-Transform your ideas into custom Lightning apps that extend CRM workflows directly in Lightning Experience. Through natural conversations with Agentforce Vibes, implement custom objects and fields, complex business logic, and dynamic UI components. See [Build a Lightning App Using Agentforce Vibes](https://developer.salesforce.com/docs/platform/einstein-for-devs/guide/lexapp-overview.html).
-
-## Additional Resources
-
-- [Agentforce Vibes Developer Guide](https://developer.salesforce.com/docs/platform/einstein-for-devs/guide/einstein-overview.html)
-- [Salesforce CLI Installation Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/)
-- [Salesforce CLI Plugin Development Guide](https://developer.salesforce.com/docs/platform/salesforce-cli-plugin/guide/conceptual-overview.html)
-- [Salesforce VS Code Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-
+- No hay claves ni secretos en este repositorio.
+- Proyecto del TFG de DAM. Ver el README de la raíz para la visión general.
