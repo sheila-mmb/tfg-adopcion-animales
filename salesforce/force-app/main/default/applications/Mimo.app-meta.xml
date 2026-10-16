@@ -14,10 +14,9 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>Mimo</label>
     <navType>Standard</navType>
+    <tabs>standard-home</tabs>
     <tabs>Animal__c</tabs>
     <tabs>standard-Case</tabs>
-    <tabs>standard-Account</tabs>
-    <tabs>standard-Contact</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Mimo_UtilityBar</utilityBar>
 </CustomApplication>

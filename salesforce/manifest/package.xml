@@ -21,6 +21,7 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>Animal_Rellenar_centro_clave</members>
         <members>Case_Rellenar_centro_clave</members>
         <name>Flow</name>
     </types>
