@@ -2,18 +2,53 @@ package com.mimo.backend.model;
 
 import com.mimo.backend.model.enums.TipoNotificacion;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "notificacion")
 public class Notificacion {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_notificacion")
     private Long idNotificacion;
-    private TipoNotificacion tipo;
-    private String mensaje;
-    private boolean leido;    // En la BBDD empieza en false
-    private LocalDateTime fechaCreacion;    // La BBDD la pone sola
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo", nullable = false, length = 30)
+    private TipoNotificacion tipo;
+
+    @Column(name = "mensaje", nullable = false, columnDefinition = "TEXT")
+    private String mensaje;
+
+    @Column(name = "leido", nullable = false)
+    private boolean leido;    // Empieza en false (el valor por defecto de un boolean)
+
+    @CreationTimestamp
+    @Column(name = "fecha_creacion", nullable = false, updatable = false)
+    private LocalDateTime fechaCreacion;    // La rellena Hibernate al guardar (@CreationTimestamp)
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_persona", nullable = false)
     private Persona persona;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_solicitud")
     private Solicitud solicitud;  // Puede ser null
+    // Sin optional = false ni nullable = false porque es opcional: solo es obligatoria
+    // cuando el tipo empieza por SOLICITUD_ (lo comprueba un CHECK de la tabla).
 
     public Notificacion() {
     }
