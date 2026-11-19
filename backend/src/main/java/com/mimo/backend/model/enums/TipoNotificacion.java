@@ -1,0 +1,6 @@
+package com.mimo.backend.model.enums;
+
+public enum TipoNotificacion {
+    SOLICITUD_PENDIENTE, SOLICITUD_ACEPTADA, SOLICITUD_DENEGADA, FAVORITO_NO_DISPONIBLE,
+    DONACION_COMPLETADA, DONACION_FALLIDA
+}
